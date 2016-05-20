@@ -6,8 +6,8 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
 
-        define('ROOT_DOMAIN', 'yourname.org');
-        ini_set("session.cookie_domain", '.' . ROOT_DOMAIN);
+        define('CAPTCHA_DOMAIN', 'yourname.org');
+        ini_set("session.cookie_domain", '.' . CAPTCHA_DOMAIN);
         
         // Sign up for API key here 
         // https://www.google.com/recaptcha/admin#list
