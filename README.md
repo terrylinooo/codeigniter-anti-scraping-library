@@ -14,6 +14,8 @@ Protecting your content from illegal scraping is not so difficult. Anti-Scraping
 
 If an user reached the limit of your settings, Anti-Scraping will ban him and show a warning page, ask for the user to complete the reCaptcha, once the user done, Anti-Scraping will remove him out of the ban list.
 
+![Screenshot](http://i.imgur.com/PvA6WPP.png)
+
 By default, Anti-Scraping allow popular search englines, Google and Bing, their crawlers' IP can be resolved to hostname and easy to identify.
 
 ###Requirment###
