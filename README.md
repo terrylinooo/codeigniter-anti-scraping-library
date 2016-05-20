@@ -1,6 +1,6 @@
 # Codeigniter-Anti-Scraping-Library
 
-Protecting your content from illegal scraping is not so difficult. Anti-Scraping works just like goole, detects users' behavior and analyzes users' information such as:
+Protecting your content from illegal scraping is not so difficult. Anti-Scraping works just like how Google works, detects users' behavior and analyzes users' information such as:
 
 (1) IP address
 (2) IP's resolved hostname
