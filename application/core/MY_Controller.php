@@ -16,17 +16,20 @@ class MY_Controller extends CI_Controller
 
 
         $this->load->helper('cookie');
+        
+        // $this->load->library('session');
+        // If you want to load session library, must before Anti-Scraping library because of session_start() issue.
         $this->load->library('anti_scraping');
         
         // PSR-4 autoloader, it will automaticlly load ReCaptcha when it needs.
         require_once APPPATH .'third_party/autoload.php';
 
-        $this->AntiScraping();
+        $this->Anti_Scraping();
     }
 
-    public function AntiScraping()
+    public function Anti_Scraping()
     {
-        // Install SQL table for AntiScraping, after installed, please remove this line.
+        // Install SQL table for Anti-Scraping, after installed, please remove this line.
         // storage engine: memory, innodb, myisam
         $this->anti_scraping->install('memory'); 
 
