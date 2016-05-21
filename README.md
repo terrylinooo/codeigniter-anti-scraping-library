@@ -315,7 +315,7 @@ if ($anti_scraping_result == 'deny')
 }
 ```
 ####debug####
-public function debug($display = FALSE, $is_reset = TRUE);
+public function debug($is_display = FALSE, $is_reset = TRUE);
 ```php
 /**
  * Set $is_reset to FALSE if you don't want to rest the user data.
@@ -339,7 +339,7 @@ public function debug($display = FALSE, $is_reset = TRUE);
 ```
 ![Screenshot](http://i.imgur.com/UmZccno.png)
 
-if $display = TRUE, the debug information will be displayed on the front page.
+if $is_display = TRUE, the debug information will be displayed on the front page.
 
 
 
