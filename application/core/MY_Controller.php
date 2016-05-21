@@ -31,16 +31,18 @@ class MY_Controller extends CI_Controller
     {
         // Install SQL table for Anti-Scraping, after installed, please remove this line.
         // storage engine: memory, innodb, myisam
-        $this->antiscraping->install('memory'); 
+        
+        //$this->antiscraping->install('innodb'); 
 
         /* for test
         
-        $this->anti_scraping->user_ip_address = '66.249.92.125';
-        $this->anti_scraping->user_ip_resolve = 'rate-limited-proxy-66-249-92-125.google.com';
-        $this->anti_scraping->user_agent = 'Mediapartners-Google';
-        echo $this->anti_scraping->debug();
-        
+        $this->antiscraping->user_ip_address = '66.249.92.125';
+        $this->antiscraping->user_ip_resolve = 'rate-limited-proxy-66-249-92-125.google.com';
+        $this->antiscraping->user_agent = 'Mediapartners-Google';
+
         */
+        
+        $this->antiscraping->debug(); // debug information will be displayed in page source (view HTML).
 
         $anti_scraping_result = $this->antiscraping->run();
 
