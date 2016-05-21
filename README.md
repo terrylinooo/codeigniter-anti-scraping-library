@@ -50,6 +50,21 @@ then add this line:
 $this->antiscraping->install_sql();
 ```
 
+###First Try###
+```php
+$this->load->library('AntiScraping');
+
+$this->antiscraping->user_ip_address = '66.249.92.125';
+$this->antiscraping->user_ip_resolve = 'rate-limited-proxy-66-249-92-125.google.com';
+$this->antiscraping->user_agent = 'Mediapartners-Google';
+
+$anti_scraping_result = $this->antiscraping->run();
+
+// Use phpMyAdmin to check out the table as_ip_rule, should see this IP has been added to "allow" list, because it is Googlebot IP. 
+// Everyone loves Googlebot :)
+
+```
+
 ###API###
 
 ####rebuild_sql####
