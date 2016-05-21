@@ -63,9 +63,8 @@ $this->antiscraping->user_agent = 'Mediapartners-Google';
 $anti_scraping_result = $this->antiscraping->run();
 
 ```
-Use phpMyAdmin to check out the table as_ip_rule, should see this IP has been added to "allow" list, because it is Googlebot IP. 
+Use phpMyAdmin to check out the table as_ip_rule, should see this IP has been added to "allow" list, because it is Googlebot IP. Everyone loves Googlebot :)
 
-Everyone loves Googlebot :)
 
 
 ###API###
@@ -269,7 +268,12 @@ public function ban_ip_rule($assign_ip);
  *
  * @param string $assign_ip
  */
+ 
+ $this->antiscraping->ban_ip_rule('127.0.0.1');
 ```
+If you are testing your webiste on localhost environment (127.0.0.1), you will see you're banned immediately.
+
+
 
 ###Global Functions###
 
