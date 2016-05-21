@@ -69,14 +69,16 @@ Use phpMyAdmin to check out the table as_ip_rule, should see this IP has been ad
 
 ###API###
 
+
 ####rebuild_sql####
-public function rebuild_sql($sql_engine = 'InnoDB');
+public function rebuild_sql();
 ```php
 /**
  * Rebuild SQL tables.
- *
- * @param string $sql_engine
  */
+$this->load->library('AntiScraping');
+
+$this->load->antiscraping->rebuild_sql();
 ```
 
 ####install_sql####
@@ -87,7 +89,12 @@ public function install_sql($sql_engine = 'InnoDB');
  *
  * @param string $sql_engine
  */
+ 
+$this->load->library('AntiScraping');
+
+$this->load->antiscraping->install_sql();
 ```
+
 
 ####remove_deny_ip####
 public function remove_deny_ip($ip);
@@ -98,8 +105,20 @@ public function remove_deny_ip($ip);
  * @param string $ip
  * @return bool
  */
- ```
+
+$this->load->library('AntiScraping');
  
+// Remove this ipv6 range.
+$this->antiscraping->remove_deny_ip('2607:f0d0::/32');
+
+// Remove single IP
+$this->antiscraping->remove_deny_ip('66.249.92.125');
+
+// Remove IP range
+$this->antiscraping->remove_deny_ip('31.13.24.0/21');
+```
+ 
+
 ####remove_allow_ip####
 public function remove_allow_ip($ip);
 ```php
@@ -109,7 +128,20 @@ public function remove_allow_ip($ip);
  * @param string $ip
  * @return bool
  */
- ```
+
+$this->load->library('AntiScraping');
+
+// Remove this ipv6 range.
+$this->antiscraping->remove_allow_ip('2607:f0d0::/32');
+
+// Remove single IP
+$this->antiscraping->remove_allow_ip('66.249.92.125');
+
+// Remove IP range
+$this->antiscraping->remove_allow_ip('31.13.24.0/21');
+```
+
+ 
 ####add_deny_ip####
 public function add_deny_ip($ip);
 ```php
@@ -119,7 +151,19 @@ public function add_deny_ip($ip);
  * @param string $ip
  * @return bool
  */
- ```
+
+$this->load->library('AntiScraping');
+
+// Ban this ipv6 range.. All ipv6 IP in this range will be banned **permanently**.
+$this->antiscraping->add_deny_ip('2607:f0d0::/32');
+
+// Ban single IP
+$this->antiscraping->add_deny_ip('66.249.92.125');
+
+// Ban IP range
+$this->antiscraping->add_deny_ip('31.13.24.0/21');
+```
+
 
 ####add_allow_ip####
 public function add_allow_ip($ip);
@@ -130,7 +174,19 @@ public function add_allow_ip($ip);
  * @param string $ip
  * @return bool
  */
+ 
+$this->load->library('AntiScraping');
+ 
+// Allow this ipv6 range.. All ipv6 IP in this range will be allowed **permanently**.
+$this->antiscraping->add_allow_ip('2607:f0d0::/32');
+
+// Allow single IP
+$this->antiscraping->add_allow_ip('66.249.92.125');
+
+// Allow IP range
+$this->antiscraping->add_allow_ip('31.13.24.0/21');
 ```
+
 
 ####ip_in_range####
 public function ip_in_range($ip, $ip_range);
@@ -144,6 +200,7 @@ public function ip_in_range($ip, $ip_range);
  */
 ```
 
+
 ####check_ip_status####
 public function check_ip_status($ip);
 ```php
@@ -153,7 +210,24 @@ public function check_ip_status($ip);
  * @param string $ip
  * @return array|bool
  */
+
+// Check ipv6 IP address.. first add an IP range to test it..
+$this->antiscraping->add_deny_ip('2607:f0d0::/32');
+
+// This IP is in the ban range
+$check_ip_result = $this->antiscraping->check_ip_status('2607:f0d0:1002:0051:0000:0000:0000:0004');
+
+foreach ($check_ip_result AS $key => $value)
+{
+    echo $key . ': ' . $value . '<br />'; 
+}
 ```
+output:
+```php
+status: deny
+code: 11
+```
+
 
 ####initialize####
 public function initialize($config = array());
@@ -185,6 +259,7 @@ if ($anti_scraping_result == 'deny')
 You will not use this method unless you reset the $config setting in your script.
 
 initialize() must be placed before run()
+
 
 
 
