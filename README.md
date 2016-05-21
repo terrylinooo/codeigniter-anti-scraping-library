@@ -83,8 +83,8 @@ public function remove_deny_ip($ip);
  */
  ```
  
-####remove_deny_ip####
-public function remove_deny_ip($ip);
+####remove_allow_ip####
+public function remove_allow_ip($ip);
 ```php
 /**
  * Remove single IP or IP range from $allow_ip_pool varible
@@ -93,8 +93,8 @@ public function remove_deny_ip($ip);
  * @return bool
  */
  ```
-####remove_allow_ip####
-public function remove_allow_ip($ip);
+####add_deny_ip####
+public function add_deny_ip($ip);
 ```php
 /**
  * Add single IP or IP range to $deny_ip_pool varible
@@ -103,86 +103,123 @@ public function remove_allow_ip($ip);
  * @return bool
  */
  ```
-    public function add_deny_ip($ip);
 
-    /**
-     * Add single IP or IP range to $allow_ip_pool varible
-     *
-     * @param string $ip
-     * @return bool
-     */
-    public function add_allow_ip($ip);
+####add_allow_ip####
+public function add_allow_ip($ip);
+```php
+/**
+ * Add single IP or IP range to $allow_ip_pool varible
+ *
+ * @param string $ip
+ * @return bool
+ */
+```
 
-    /**
-     * Check if a given IP is in a network
-     *
-     * @param  string $ip
-     * @param  string $range
-     * @return boolean
-     */
-    public function ip_in_range($ip, $ip_range);
+####ip_in_range####
+public function ip_in_range($ip, $ip_range);
+```php
+/**
+ * Check if a given IP is in a network
+ *
+ * @param  string $ip
+ * @param  string $range
+ * @return boolean
+ */
+```
 
-    /**
-     * Check an IP if it exists in AntiScraping allow/deny list.
-     *
-     * @param string $ip
-     * @return array|bool
-     */
-    public function check_ip_status($ip);
+####check_ip_status####
+public function check_ip_status($ip);
+```php
+/**
+ * Check an IP if it exists in AntiScraping allow/deny list.
+ *
+ * @param string $ip
+ * @return array|bool
+ */
+```
 
-    /**
-     * Load config settings and initialize them.
-     * Overwrite settings by magic function __set()
-     *
-     * @param array $config
-     */
-    public function initialize($config = array());
+####initialize####
+public function initialize($config = array());
+```php
+/**
+ * Load config settings and initialize them.
+ * Overwrite settings by magic function __set()
+ *
+ * @param array $config
+ */
+```
 
-    /**
-     * Check rule table first, if an IP address has been listed, return 'deny' or 'allow' status.
-     * Call function detect() if an IP address is not listed in rule table
-     *
-     * @return string - 'deny' or 'allow' or 'unknown'
-     */
-    public function run();
+####run####
+public function run();
+```php
+/**
+ * Check rule table first, if an IP address has been listed, return 'deny' or 'allow' status.
+ * Call function detect() if an IP address is not listed in rule table
+ *
+ * @return string - 'deny' or 'allow' or 'unknown'
+ */
+```
+####debug####
+public function debug($display = FALSE, $is_reset = TRUE);
+```php
+/**
+ * Set $is_reset to FALSE if you don't want to rest the user data.
+ * It helps to fake an IP address to debug that Anti-Scraping works or not.
+ *
+ * @param bool $is_reset
+ * @return string
+ */
+```
 
+####is_social_useragent####
+public function is_social_useragent();
+```php
+/**
+ * Check If an user's User-Agent contains social-network crawler's information
+ *
+ * @return bool
+ */
+```
 
-    /**
-     * Set $is_reset to FALSE if you don't want to rest the user data.
-     * It helps to fake an IP address to debug that Anti-Scraping works or not.
-     *
-     * @param bool $is_reset
-     * @return string
-     */
-    public function debug($display = FALSE, $is_reset = TRUE);
+####is_search_engine####
+public function is_search_engine();
+```php
+/**
+ * Check If is an user really a search engine crawler.
+ *
+ * @return bool
+ */
+```
 
-    /**
-     * Check If an user's User-Agent contains social-network crawler's information
-     *
-     * @return bool
-     */
-    public function is_social_useragent();
+####delete_ip_rule####
+public function delete_ip_rule($ip = '');
+```php
+/**
+ * After a user has completed a CAPTCHA, delete his IP from Ban list.
+ *
+ * @param string $ip
+ * @return bool
+ */
+```
 
-    /**
-     * Check If is an user really a search engine crawler.
-     *
-     * @return bool
-     */
-    public function is_search_engine();
+####ban_ip_rule####
+public function ban_ip_rule($assign_ip);
+```php
+/**
+ * Manually ban an IP address
+ *
+ * @param string $assign_ip
+ */
+```
 
-    /**
-     * After a user has completed a CAPTCHA, delete his IP from Ban list.
-     *
-     * @param string $ip
-     * @return bool
-     */
-    public function delete_ip_rule($ip = '');
+###Global Functions###
 
-    /**
-     * Manually ban an IP address
-     *
-     * @param string $assign_ip
-     */
-    public function ban_ip_rule($assign_ip);
+####CI_AntiScraping####
+CI_AntiScraping()
+```php
+/**
+ * Print javascript snippet in your webpages.
+ * Use this function in your View
+ */
+```
 
-###Examples###
