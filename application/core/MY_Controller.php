@@ -19,19 +19,19 @@ class MY_Controller extends CI_Controller
         
         // $this->load->library('session');
         // If you want to load session library, must before Anti-Scraping library because of session_start() issue.
-        $this->load->library('anti_scraping');
+        $this->load->library('AntiScraping');
         
         // PSR-4 autoloader, it will automaticlly load ReCaptcha when it needs.
         require_once APPPATH .'third_party/autoload.php';
 
-        $this->Anti_Scraping();
+        $this->_AntiScraping();
     }
 
-    public function Anti_Scraping()
+    public function _AntiScraping()
     {
         // Install SQL table for Anti-Scraping, after installed, please remove this line.
         // storage engine: memory, innodb, myisam
-        $this->anti_scraping->install('memory'); 
+        $this->antiscraping->install('memory'); 
 
         /* for test
         
@@ -42,7 +42,7 @@ class MY_Controller extends CI_Controller
         
         */
 
-        $anti_scraping_result = $this->anti_scraping->filtering();
+        $anti_scraping_result = $this->antiscraping->run();
 
         if ( $anti_scraping_result == 'deny' )
         {
@@ -56,21 +56,21 @@ class MY_Controller extends CI_Controller
 
                 if ($resp->isSuccess())
                 {
-                    $this->anti_scraping->remove_deny();
+                    $this->antiscraping->delete_ip_rule();
                 }
                 else
                 {
-                    $this->ReCaptcha();
+                    $this->_ReCaptcha();
                 }
             }
             else
             {
-                $this->ReCaptcha();
+                $this->_ReCaptcha();
             }
         }
     }
 
-    public function ReCaptcha()
+    public function _ReCaptcha()
     {
         $data = array();
 
