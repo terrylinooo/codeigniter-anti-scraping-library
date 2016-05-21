@@ -1,10 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed.');
 
-
-// SQL table for Anti-Scraping library.
+// SQL table for AntiScraping library.
 
 $config['db_table_log'] = 'as_ip_log';
 $config['db_table_ip_rule'] = 'as_ip_rule';
+
+// AntiScraping SQL tables will using the follwing storage engine..
+// memory, innodb, myisam
+// Notice: "memory" storage engine is temporary. The data will be disappeared when you reboot system.
+
+$config['sql_engine'] = 'memory';
 
 // time_period
 
