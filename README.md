@@ -246,6 +246,7 @@ status: deny
 code: 11
 ```
 Return array('status', 'code') the meaning is below:
+
 | status  | code | 
 | ------------- | ------------- |
 | deny  | 1 : An IP is denied by single IP (defined in array $deny_ip_pool) |
