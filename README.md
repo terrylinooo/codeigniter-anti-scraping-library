@@ -210,7 +210,15 @@ public function is_social_useragent();
  *
  * @return bool
  */
+ 
+  if ($this->antiscraping->is_social_useragent())
+ {
+    // Hide content and only show meta infomation in head.
+ }
 ```
+is_social_useragent() only check User-Agent, it can be faked. I highly recommed you hide your main content and only show meta infomation in head, that is only needed information for social robots.
+Social network such as Faceook, will assign a robot to crawl your page when an user "likes" your page.
+
 
 ####is_search_engine####
 public function is_search_engine();
@@ -220,7 +228,14 @@ public function is_search_engine();
  *
  * @return bool
  */
+ 
+ if ($this->antiscraping->is_search_engine())
+ {
+    // show something to search engine.
+ }
 ```
+is_search_engine() must be placed after run(), because AntiScraping checks IP and Hostname to double confirm that if the current user is  a search engline crawler. 
+
 
 ####delete_ip_rule####
 public function delete_ip_rule($ip = '');
