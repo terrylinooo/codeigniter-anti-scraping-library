@@ -33,7 +33,7 @@ Sign up for an API key https://www.google.com/recaptcha/admin#list
 4. Copy **/core/MY_Controller.php** to your /core/ folder
 5. Extends your Controller to MY_Controller (Check out MY_Controller.php and simply modify it for your needs)
 
-#####Install Mysql tables#####
+#####Install MySQL tables#####
 
 AntiScraping creates two MySQL tables in MEMORY engine by default, but if you wish to use InnoDB, you need to add this line in your Controller at the first time use of AntiScraping library.
 
