@@ -198,7 +198,23 @@ public function ip_in_range($ip, $ip_range);
  * @param  string $range
  * @return boolean
  */
+ 
+$this->load->library('AntiScraping');
+
+$ip = '2607:f0d0:1002:0051:0000:0000:0000:0004';
+$ip_range = '2607:f0d0::/32';
+
+if ($this->antiscraping->ip_in_range($ip, $ip_range))
+{
+    echo 'This IP is in range';
+}
+else
+{
+    echo 'This IP is not in range';
+}
 ```
+This method is used for supporting check_ip_status(), I think you will not use it.
+
 
 
 ####check_ip_status####
@@ -210,6 +226,8 @@ public function check_ip_status($ip);
  * @param string $ip
  * @return array|bool
  */
+
+$this->load->library('AntiScraping');
 
 // Check ipv6 IP address.. first add an IP range to test it..
 $this->antiscraping->add_deny_ip('2607:f0d0::/32');
@@ -236,6 +254,7 @@ code: 11
 | allow  | 1 : An IP is allowed by single IP (defined in array $allow_ip_pool) |
 | allow  | 2 : An IP is allowed by rule table (defined in MySQL as_ip_rule table) |
 | allow  | 11 : An IP is allowed by IP range (defined in array $allow_ip_pool)|
+
 
 
 ####initialize####
@@ -318,6 +337,7 @@ public function debug($display = FALSE, $is_reset = TRUE);
 if $display = TRUE, the debug information will be displayed on the front page.
 
 
+
 ####is_social_useragent####
 public function is_social_useragent();
 ```php
@@ -336,6 +356,7 @@ public function is_social_useragent();
 ```
 is_social_useragent() only check User-Agent, it can be faked. I highly recommed you hide your main content and only show meta infomation in head, that is only needed information for social robots.
 Social network such as Faceook, will assign a robot to crawl your page when an user "likes" your page.
+
 
 
 ####is_search_engine####
@@ -363,6 +384,7 @@ if ($this->antiscraping->is_search_engine())
 is_search_engine() must be placed after run(), because AntiScraping checks IP and Hostname to double confirm that if the current user is  a search engline crawler. 
 
 
+
 ####delete_ip_rule####
 public function delete_ip_rule($ip = '');
 ```php
@@ -373,32 +395,32 @@ public function delete_ip_rule($ip = '');
  * @return bool
  */
  
- $anti_scraping_result = $this->antiscraping->run();
+$anti_scraping_result = $this->antiscraping->run();
 
- if ($anti_scraping_result == 'deny')
- {
-     if ($this->input->post('g-recaptcha-response'))
-     {
-         $remoteIp           = $this->input->ip_address();
-         $gRecaptchaResponse = $this->input->post('g-recaptcha-response');
+if ($anti_scraping_result == 'deny')
+{
+    if ($this->input->post('g-recaptcha-response'))
+    {
+        $remoteIp           = $this->input->ip_address();
+        $gRecaptchaResponse = $this->input->post('g-recaptcha-response');
 
-         $recaptcha = new \ReCaptcha\ReCaptcha(CAPTCHA_SECRET_KEY);
-         $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
+        $recaptcha = new \ReCaptcha\ReCaptcha(CAPTCHA_SECRET_KEY);
+        $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
 
-         if ($resp->isSuccess())
-         {
-             $this->antiscraping->delete_ip_rule();
-         }
-         else
-         {
-             $this->_reCaptcha();
-         }
-     }
-     else
-     {
-         $this->_reCaptcha();
-     }
- }
+        if ($resp->isSuccess())
+        {
+            $this->antiscraping->delete_ip_rule();
+        }
+        else
+        {
+            $this->_reCaptcha();
+        }
+    }
+    else
+    {
+        $this->_reCaptcha();
+    }
+}
 ```
 
 ####ban_ip_rule####
@@ -410,13 +432,14 @@ public function ban_ip_rule($assign_ip);
  * @param string $assign_ip
  */
  
- $this->antiscraping->ban_ip_rule('127.0.0.1');
+$this->antiscraping->ban_ip_rule('127.0.0.1');
 ```
 If you are testing your webiste on localhost environment (127.0.0.1), you will see you're banned immediately.
 
 
 
 ###Global Functions###
+
 
 ####CI_AntiScraping####
 CI_AntiScraping()
