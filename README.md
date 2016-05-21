@@ -214,6 +214,33 @@ public function delete_ip_rule($ip = '');
  * @param string $ip
  * @return bool
  */
+ 
+ $anti_scraping_result = $this->antiscraping->run();
+
+ if ($anti_scraping_result == 'deny')
+ {
+     if ($this->input->post('g-recaptcha-response'))
+     {
+         $remoteIp           = $this->input->ip_address();
+         $gRecaptchaResponse = $this->input->post('g-recaptcha-response');
+
+         $recaptcha = new \ReCaptcha\ReCaptcha(CAPTCHA_SECRET_KEY);
+         $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
+
+         if ($resp->isSuccess())
+         {
+             $this->antiscraping->delete_ip_rule();
+         }
+         else
+         {
+             $this->_reCaptcha();
+         }
+     }
+     else
+     {
+         $this->_reCaptcha();
+     }
+ }
 ```
 
 ####ban_ip_rule####
