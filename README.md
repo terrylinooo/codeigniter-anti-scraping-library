@@ -165,11 +165,24 @@ public function debug($display = FALSE, $is_reset = TRUE);
 /**
  * Set $is_reset to FALSE if you don't want to rest the user data.
  * It helps to fake an IP address to debug that Anti-Scraping works or not.
- *
+ 
+ * @param bool $display
  * @param bool $is_reset
  * @return string
  */
+ 
+ // After useing debug(), the debug information will be displayed in the page source. (HTML)
+ $this->antiscraping->debug();
+ $anti_scraping_result = $this->antiscraping->run();
+ 
+ if ($anti_scraping_result == 'deny')
+ {
+    // Show captcha page to current user.
+ }
 ```
+![Screenshot](http://i.imgur.com/UmZccno.png)
+
+if $display == TRUE, the debug information will be displayed on the front page.
 
 ####is_social_useragent####
 public function is_social_useragent();
