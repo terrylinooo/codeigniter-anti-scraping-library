@@ -182,7 +182,8 @@ public function debug($display = FALSE, $is_reset = TRUE);
 ```
 ![Screenshot](http://i.imgur.com/UmZccno.png)
 
-if $display == TRUE, the debug information will be displayed on the front page.
+if $display = TRUE, the debug information will be displayed on the front page.
+
 
 ####is_social_useragent####
 public function is_social_useragent();
