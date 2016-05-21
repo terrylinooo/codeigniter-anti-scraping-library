@@ -80,6 +80,10 @@ $this->load->library('AntiScraping');
 
 $this->load->antiscraping->rebuild_sql();
 ```
+When the log and rule tables have become too large, you can rebuild them. 
+Run this method in a Cron job is a good idea.
+
+
 
 ####install_sql####
 public function install_sql($sql_engine = 'InnoDB');
