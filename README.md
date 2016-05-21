@@ -395,7 +395,9 @@ public function delete_ip_rule($ip = '');
  * @param string $ip
  * @return bool
  */
- 
+
+$this->load->library('AntiScraping');
+
 $anti_scraping_result = $this->antiscraping->run();
 
 if ($anti_scraping_result == 'deny')
@@ -432,7 +434,9 @@ public function ban_ip_rule($assign_ip);
  *
  * @param string $assign_ip
  */
- 
+
+$this->load->library('AntiScraping');
+
 $this->antiscraping->ban_ip_rule('127.0.0.1');
 ```
 If you are testing your webiste on localhost environment (127.0.0.1), you will see you're banned immediately.
@@ -451,3 +455,20 @@ CI_AntiScraping()
  */
 ```
 
+###Ideas###
+
+If you don't want AntiScriping to detect bad robots or crawlers, you can set it FALSE;
+In this case AntiScriping can still deny users by querying rule table (MySQL) and $deny_ip_pool (Array)
+
+```php
+$this->load->library('AntiScraping');
+
+$this->enable_filtering = FALSE;
+
+$anti_scraping_result = $this->antiscraping->run();
+
+if ($anti_scraping_result == 'deny')
+{
+    // do something
+}
+```
