@@ -460,9 +460,9 @@ CI_AntiScraping()
 
 CI_AntiScraping() will output javascript snippet to generate cookie. Don't forget to set *cookie_domain* in config file.
 
+###Varibles###
 
-
-###Ideas###
+####enable_filtering####
 
 If you don't want AntiScriping to detect bad robots or crawlers, you can set it FALSE;
 In this case AntiScriping can still deny users by querying rule table (MySQL) and $deny_ip_pool (Array)
