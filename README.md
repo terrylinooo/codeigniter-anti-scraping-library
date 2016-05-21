@@ -227,7 +227,11 @@ output:
 status: deny
 code: 11
 ```
-
+| status  | code |
+| ------------- | ------------- |
+| deny  | 1  |
+| allow  | 2 |
+|    | 11 |
 
 ####initialize####
 public function initialize($config = array());
