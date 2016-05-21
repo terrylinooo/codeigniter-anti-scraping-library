@@ -227,11 +227,16 @@ output:
 status: deny
 code: 11
 ```
-| status  | code |
+####Return array('status', 'code') the meaning is below:
+| status  | code | 
 | ------------- | ------------- |
-| deny  | 1  |
-| allow  | 2 |
-|    | 11 |
+| deny  | 1 : An IP is denied by single IP (defined in array $deny_ip_pool) |
+| deny  | 2 : An IP is denied by rule table (defined in MySQL as_ip_rule table) |
+| deny  | 11 : An IP is denied by IP range (defined in array $deny_ip_pool)|
+| allow  | 1 : An IP is allowed by single IP (defined in array $allow_ip_pool) |
+| allow  | 2 : An IP is allowed by rule table (defined in MySQL as_ip_rule table) |
+| allow  | 11 : An IP is allowed by IP range (defined in array $allow_ip_pool)|
+
 
 ####initialize####
 public function initialize($config = array());
