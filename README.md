@@ -164,7 +164,29 @@ public function initialize($config = array());
  *
  * @param array $config
  */
+
+$this->load->library('AntiScraping');
+ 
+$config['time_period'] = 'h';
+$config['limit_pageviews']['h'] = 20; // default: 30
+$config['interval_check_referer'] = 3; // default: 5
+
+// default config settings are defined in /config/antiScraping.php
+
+$this->antiscraping->initialize($config);
+
+$anti_scraping_result = $this->antiscraping->run();
+
+if ($anti_scraping_result == 'deny')
+{
+    // do something
+}
 ```
+You will not use this method unless you reset the $config setting in your script.
+
+initialize() must be placed before run()
+
+
 
 ####run####
 public function run();
@@ -175,6 +197,14 @@ public function run();
  *
  * @return string - 'deny' or 'allow' or 'unknown'
  */
+$this->load->library('AntiScraping');
+ 
+$anti_scraping_result = $this->antiscraping->run();
+
+if ($anti_scraping_result == 'deny')
+{
+    // do something
+}
 ```
 ####debug####
 public function debug($display = FALSE, $is_reset = TRUE);
@@ -187,6 +217,8 @@ public function debug($display = FALSE, $is_reset = TRUE);
  * @param bool $is_reset
  * @return string
  */
+ 
+ $this->load->library('AntiScraping');
  
  // After useing debug(), the debug information will be displayed in the page source. (HTML)
  $this->antiscraping->debug();
@@ -211,7 +243,9 @@ public function is_social_useragent();
  * @return bool
  */
  
-  if ($this->antiscraping->is_social_useragent())
+ $this->load->library('AntiScraping');
+ 
+ if ($this->antiscraping->is_social_useragent())
  {
     // Hide content and only show meta infomation in head.
  }
@@ -229,10 +263,18 @@ public function is_search_engine();
  * @return bool
  */
  
- if ($this->antiscraping->is_search_engine())
- {
-    // show something to search engine.
- }
+$this->load->library('AntiScraping');
+ 
+$anti_scraping_result = $this->antiscraping->run();
+
+if ($anti_scraping_result == 'deny')
+{
+    // do something..
+}
+if ($this->antiscraping->is_search_engine())
+{
+   // show something to search engine.
+}
 ```
 is_search_engine() must be placed after run(), because AntiScraping checks IP and Hostname to double confirm that if the current user is  a search engline crawler. 
 
