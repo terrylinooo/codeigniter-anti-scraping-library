@@ -62,9 +62,10 @@ $this->antiscraping->user_agent = 'Mediapartners-Google';
 
 $anti_scraping_result = $this->antiscraping->run();
 
-// Use phpMyAdmin to check out the table as_ip_rule, should see this IP has been added to "allow" list, because it is Googlebot IP. 
-// Everyone loves Googlebot :)
 ```
+Use phpMyAdmin to check out the table as_ip_rule, should see this IP has been added to "allow" list, because it is Googlebot IP. 
+
+Everyone loves Googlebot :)
 
 
 ###API###
