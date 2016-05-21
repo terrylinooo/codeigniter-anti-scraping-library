@@ -453,7 +453,14 @@ CI_AntiScraping()
  * Print javascript snippet in your webpages.
  * Use this function in your View
  */
+ 
+ <?= CI_AntiScraping() ?>
 ```
+![Screenshot](http://i.imgur.com/9GZX0Mn.png)
+
+CI_AntiScraping() will output javascript snippet to generate cookie. Don't forget to set *cookie_domain* in config file.
+
+
 
 ###Ideas###
 
