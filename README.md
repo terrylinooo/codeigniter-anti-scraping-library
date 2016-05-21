@@ -12,7 +12,7 @@ Protecting your content from illegal scraping is not so difficult. AntiScraping 
 
 ###How it works?###
 
-If an user reached the limit of your settings, AntiScraping will ban him and show a warning page, ask for the user to complete the reCaptcha, once the user done, AntiScraping will remove him out of the ban list.
+If an user has reached the limit of your settings, AntiScraping will ban him and show a warning page, ask for the user to complete the reCaptcha, once the user done, AntiScraping will remove him out of the ban list.
 
 ![Screenshot](http://i.imgur.com/PvA6WPP.png)
 
