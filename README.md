@@ -364,11 +364,11 @@ Social network such as Faceook, will assign a robot to crawl your page when an u
 
 
 
-####is_search_engine####
-public function is_search_engine();
+####is_robot####
+public function is_robot();
 ```php
 /**
- * Check If is an user really a search engine crawler.
+ * Check If is an user a robot
  *
  * @return bool
  */
@@ -381,7 +381,7 @@ if ($anti_scraping_result == 'deny')
 {
     // do something..
 }
-if ($this->antiscraping->is_search_engine())
+if ($this->antiscraping->is_robot())
 {
    // show something to search engine.
 }
