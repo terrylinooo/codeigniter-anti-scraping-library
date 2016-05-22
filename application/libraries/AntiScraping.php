@@ -39,7 +39,7 @@ class AntiScraping implements AntiScrapingInterface
 interface AntiScrapingInterface
 {
     public function rebuild_sql();
-    public function install_sql($sql_engine = 'InnoDB');
+    public function install_sql();
     public function remove_deny_ip($ip);
     public function remove_allow_ip($ip);
     public function add_deny_ip($ip);
