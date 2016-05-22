@@ -50,7 +50,7 @@ interface AntiScrapingInterface
     public function check_ip_status($ip);
     public function initialize($config = array());
     public function debug($is_display = false, $is_reset = true);
-    public function is_social_robot_useragent();
+    public function is_social_useragent();
     public function run();
     public function is_denied_robot();
     public function is_allowed_robot();
