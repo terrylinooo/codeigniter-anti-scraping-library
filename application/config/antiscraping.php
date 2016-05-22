@@ -54,3 +54,73 @@ $config['cookie_name'] = 'ssjd';
 // cookie_domain
 
 $config['cookie_domain'] = '';
+
+/*
+ * Robot information list
+ */
+
+// Please add a 'dot' before the domain string
+// to prevent fake hostname such as: agooglebot.com, yyahoo.com
+
+$config['robot']['allow_robot_host'] = array(
+    '.googlebot.com',
+    '.google.com',
+    '.live.com',   // search.live.com
+    '.msn.com',    // msnbot.msn.com, search.msn.com
+    '.ask.com',
+    '.bing.com',
+    '.inktomisearch.com',
+    '.yahoo.com',
+    '.yahoo.net',  // crawl.yahoo.net
+    '.yandex.com',
+    '.yandex.ru',
+    '.w3.org'
+);
+
+$config['robot']['deny_robot_host'] = array(
+    '.webcrawler.link'
+);
+
+/*
+ *  Notice: The defined user-agent strings below, their IP address must can be resolved as domain name defined 
+ *  in $config['robot']['allow_robot_host'] array, otherwise AntiScraping will ignore this setting.
+ *
+ *  Ex. Baiduspider's hostname is not resolved to the correct IP address, for security reason, AntiScraping doesn't
+ *  trust it because it is very easy to fake User-Agent information.
+ * 
+ *  If you put "baidu" here, the Baiduspider's IP will be banned because cannot resolve hostname to current IP, 
+ *  AntiScraping think this is fake hostname.
+ */
+
+$config['robot']['allow_robot_useragent'] = array(
+    'google',
+    'bing',
+    'live',
+    'msn',
+    'ask',
+    'inktomisearch',
+    'yahoo',
+    'yandex',
+    'w3.org'
+);
+
+$config['robot']['deny_robot_useragent'] = array(
+    'archive.org', // Wayback machine
+    'ahrefs.com',
+    'tweetmeme.com',
+    'findlinks',
+    'grapeshot.co.uk'
+);
+
+$config['robot']['social_robot_useragent'] = array(
+    'Twitterbot',
+    'Facebot',
+    'facebookexternalhit',
+    'Pinterest'
+);
+
+// Just let is_robot() knows the user-agent information below is also robot.
+
+$config['robot']['other_robot_useragent'] = array(
+    'baidu'
+);
