@@ -37,11 +37,7 @@ Sign up for an API key https://www.google.com/recaptcha/admin#list
 
 AntiScraping creates two MySQL tables in MEMORY engine by default, but if you wish to use InnoDB, you need to add this line in your Controller at the first time use of AntiScraping library.
 
-```php
-// sql_engine: memory, innodb, myisam
-$this->antiscraping->install_sql('innodb');
-```
-or change
+change
 ```php
 $config['sql_engine'] = 'innodb';
 ```
@@ -86,7 +82,7 @@ Run this method in a Cron job is a good idea.
 
 
 ####install_sql####
-public function install_sql($sql_engine = 'InnoDB');
+public function install_sql();
 ```php
 /**
  * Install SQL data that Anti-Scraping needs. Only run this function one time at the beginning.
