@@ -49,14 +49,17 @@ interface AntiScrapingInterface
     public function ip_in_range($ip, $ip_range);
     public function check_ip_status($ip);
     public function initialize($config = array());
-    public function debug($is_display = FALSE, $is_reset = TRUE);
-    public function is_social_useragent();
+    public function debug($is_display = false, $is_reset = true);
+    public function is_social_robot_useragent();
     public function run();
+    public function is_denied_robot();
+    public function is_allowed_robot();
     public function is_robot();
     public function is_google();
     public function is_bing();
     public function is_yahoo();
 }
+
 /**
  * Put this global function in your HTML template, usually in the footer.
  *
