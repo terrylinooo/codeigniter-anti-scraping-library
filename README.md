@@ -561,7 +561,7 @@ if ($anti_scraping_result == 'deny')
     // do something
 }
 ```
-The good idea is to trun of **filtering** and you can use AntiScraping as a blacklist library. The API methods below can easy do this idea.
+The good idea is to trun **filtering** off and you can use AntiScraping as a blacklist library. The API methods below can easy do this idea.
 
 ```php
 public function remove_deny_ip($ip);
