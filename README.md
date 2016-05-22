@@ -358,6 +358,94 @@ public function is_social_useragent();
 is_social_useragent() only check User-Agent, it can be faked. I highly recommed you hide your main content and only show meta infomation in head, that is only needed information for social robots.
 Social network such as Faceook, will assign a robot to crawl your page when an user "likes" your page.
 
+####is_denied_robot####
+public function is_denied_robot();
+```php
+/**
+ * Check If is an user a denied robot
+ *
+ * @return bool
+ */
+ 
+$this->load->library('AntiScraping');
+
+if ($this->antiscraping->is_denied_robot())
+{
+    exit('You are banned!');
+}
+```
+
+
+####is_allowed_robot####
+public function is_allowed_robot();
+```php
+/**
+ * Check If is an user an allowed robot
+ *
+ * @return bool
+ */
+ 
+$this->load->library('AntiScraping');
+
+if ($this->antiscraping->is_allowed_robot())
+{
+    echo 'You are allowed to scrape many web pages as you want!'; 
+}
+```
+
+
+####is_google####
+public function is_google();
+```php
+/**
+ * Check If is an user a Googlebot
+ *
+ * @return bool
+ */
+ 
+$this->load->library('AntiScraping');
+
+if ($this->antiscraping->is_google())
+{
+   echo 'Hello! Googlebot!';
+}
+```
+
+
+####is_bing####
+public function is_bing();
+```php
+/**
+ * Check If is an user a Bingbot
+ *
+ * @return bool
+ */
+ 
+$this->load->library('AntiScraping');
+
+if ($this->antiscraping->is_bing())
+{
+    echo 'Hello! Bingbot!';
+}
+```
+
+
+####is_yahoo####
+public function is_yahoo();
+```php
+/**
+ * Check If is an user a Yahoo bot
+ *
+ * @return bool
+ */
+ 
+$this->load->library('AntiScraping');
+
+if ($this->antiscraping->is_is_yahoo())
+{
+   echo 'Ya~~~~hoooooooooooooo';
+}
+```
 
 
 ####is_robot####
@@ -370,19 +458,13 @@ public function is_robot();
  */
  
 $this->load->library('AntiScraping');
- 
-$anti_scraping_result = $this->antiscraping->run();
 
-if ($anti_scraping_result == 'deny')
-{
-    // do something..
-}
 if ($this->antiscraping->is_robot())
 {
    // show something to search engine.
 }
 ```
-is_search_engine() must be placed after run(), because AntiScraping checks IP and Hostname to double confirm that if the current user is  a search engline crawler. 
+
 
 
 
