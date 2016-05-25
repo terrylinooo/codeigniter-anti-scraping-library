@@ -4,11 +4,13 @@ Protecting your content from illegal scraping is not so difficult. AntiScraping 
 
 - IP address
 - IP address's resolved hostname
-- Session cookie
+- Session
+- PHP cookie
 - Javascript cookie
 - User-agent
 - PHP HTTP_REFERER varible
 - Page views
+- Iframe tracker
 
 ###How it works?###
 
