@@ -12,7 +12,7 @@ Protecting your content from illegal scraping is not so difficult. AntiScraping 
 - Page views
 - Iframe tracker
 
-###How it works?###
+### How it works
 
 If an user has reached the limit of your settings, AntiScraping will ban him and show a warning page, ask for the user to complete the reCaptcha, once the user done, AntiScraping will remove him out of the ban list.
 
@@ -20,22 +20,22 @@ If an user has reached the limit of your settings, AntiScraping will ban him and
 
 By default, AntiScraping allows popular search englines, Google and Bing, their crawlers' IP can be resolved to hostname and easy to identify.
 
-###Requirment###
+### Requirment
 
 AntiScraping library needs [Google reCaptcha](https://github.com/google/recaptcha) to work.
 
 Sign up for an API key https://www.google.com/recaptcha/admin#list
 
-###Installation###
+### Installation
 
-#####Files#####
+##### Files
 1. Copy **/libraries/AntiScraping.php** to your /libraries/ folder.
 2. Copy **/config/antiscraping.php** to your /config/ folder.
 3. Copy **/views/captcha.php** to your /views/ folder.
 4. Copy **/core/MY_Controller.php** to your /core/ folder
 5. Extends your Controller to MY_Controller (Check out MY_Controller.php and simply modify it for your needs)
 
-#####Install MySQL tables#####
+##### Install MySQL tables
 
 AntiScraping creates two MySQL tables in MEMORY engine by default, but if you wish to use InnoDB, you need to add this line in your Controller at the first time use of AntiScraping library.
 
@@ -48,7 +48,7 @@ then add this line:
 $this->antiscraping->install_sql();
 ```
 
-###First Try###
+### First Try
 ```php
 $this->load->library('AntiScraping');
 
@@ -65,10 +65,10 @@ Use phpMyAdmin to check out the table as_ip_rule, should see this IP has been ad
 
 
 
-###API###
+### API
 
 
-####rebuild_sql####
+#### rebuild_sql
 public function rebuild_sql();
 ```php
 /**
@@ -77,14 +77,17 @@ public function rebuild_sql();
 $this->load->library('AntiScraping');
 
 $this->load->antiscraping->rebuild_sql();
+
 ```
 When the log and rule tables have become too large, you can rebuild them. 
 Run this method in a Cron job is a good idea.
 
 
 
-####install_sql####
+#### install_sql
+
 public function install_sql();
+
 ```php
 /**
  * Install SQL data that Anti-Scraping needs. Only run this function one time at the beginning.
@@ -98,7 +101,8 @@ $this->load->antiscraping->install_sql();
 ```
 
 
-####remove_deny_ip####
+#### remove_deny_ip
+
 public function remove_deny_ip($ip);
 ```php
 /**
@@ -121,7 +125,8 @@ $this->antiscraping->remove_deny_ip('31.13.24.0/21');
 ```
  
 
-####remove_allow_ip####
+#### remove_allow_ip
+
 public function remove_allow_ip($ip);
 ```php
 /**
@@ -144,7 +149,8 @@ $this->antiscraping->remove_allow_ip('31.13.24.0/21');
 ```
 
  
-####add_deny_ip####
+#### add_deny_ip
+
 public function add_deny_ip($ip);
 ```php
 /**
@@ -167,7 +173,8 @@ $this->antiscraping->add_deny_ip('31.13.24.0/21');
 ```
 
 
-####add_allow_ip####
+#### add_allow_ip
+
 public function add_allow_ip($ip);
 ```php
 /**
@@ -190,7 +197,8 @@ $this->antiscraping->add_allow_ip('31.13.24.0/21');
 ```
 
 
-####ip_in_range####
+#### ip_in_range
+
 public function ip_in_range($ip, $ip_range);
 ```php
 /**
@@ -219,7 +227,8 @@ This method is used for supporting check_ip_status(), I think you will not use i
 
 
 
-####check_ip_status####
+#### check_ip_status
+
 public function check_ip_status($ip);
 ```php
 /**
@@ -260,7 +269,8 @@ Return array('status', 'code') the meaning is below:
 
 
 
-####initialize####
+#### initialize
+
 public function initialize($config = array());
 ```php
 /**
@@ -294,7 +304,7 @@ initialize() must be placed before run()
 
 
 
-####run####
+#### run
 public function run();
 ```php
 /**
@@ -312,7 +322,7 @@ if ($anti_scraping_result == 'deny')
     // do something
 }
 ```
-####debug####
+#### debug
 public function debug($is_display = FALSE, $is_reset = TRUE);
 ```php
 /**
@@ -341,7 +351,7 @@ if $is_display = TRUE, the debug information will be displayed on the front page
 
 
 
-####is_social_useragent####
+#### is_social_useragent
 public function is_social_useragent();
 ```php
 /**
@@ -360,7 +370,7 @@ public function is_social_useragent();
 is_social_useragent() only check User-Agent, it can be faked. I highly recommed you hide your main content and only show meta infomation in head, that is only needed information for social robots.
 Social network such as Faceook, will assign a robot to crawl your page when an user "likes" your page.
 
-####is_denied_robot####
+#### is_denied_robot
 public function is_denied_robot();
 ```php
 /**
@@ -378,7 +388,7 @@ if ($this->antiscraping->is_denied_robot())
 ```
 
 
-####is_allowed_robot####
+#### is_allowed_robot
 public function is_allowed_robot();
 ```php
 /**
@@ -396,7 +406,7 @@ if ($this->antiscraping->is_allowed_robot())
 ```
 
 
-####is_google####
+#### is_google
 public function is_google();
 ```php
 /**
@@ -414,7 +424,7 @@ if ($this->antiscraping->is_google())
 ```
 
 
-####is_bing####
+#### is_bing
 public function is_bing();
 ```php
 /**
@@ -432,7 +442,7 @@ if ($this->antiscraping->is_bing())
 ```
 
 
-####is_yahoo####
+#### is_yahoo
 public function is_yahoo();
 ```php
 /**
@@ -450,7 +460,7 @@ if ($this->antiscraping->is_yahoo())
 ```
 
 
-####is_robot####
+#### is_robot
 public function is_robot();
 ```php
 /**
@@ -470,7 +480,7 @@ if ($this->antiscraping->is_robot())
 
 
 
-####delete_ip_rule####
+#### delete_ip_rule
 public function delete_ip_rule($ip = '');
 ```php
 /**
@@ -510,7 +520,7 @@ if ($anti_scraping_result == 'deny')
 }
 ```
 
-####ban_ip_rule####
+#### ban_ip_rule
 public function ban_ip_rule($assign_ip);
 ```php
 /**
@@ -527,10 +537,10 @@ If you are testing your webiste on localhost environment (127.0.0.1), you will s
 
 
 
-###Global Functions###
+### Global Functions
 
 
-####CI_AntiScraping####
+#### CI_AntiScraping
 CI_AntiScraping()
 ```php
 /**
@@ -544,9 +554,9 @@ CI_AntiScraping()
 
 CI_AntiScraping() will output javascript snippet to generate cookie. Don't forget to set *cookie_domain* in config file.
 
-###Varibles###
+### Varibles
 
-####enable_filtering####
+#### enable_filtering
 
 If you don't want AntiScriping to detect bad robots or crawlers, you can set it FALSE;
 In this case AntiScriping can still deny users by querying rule table (MySQL) and $deny_ip_pool (Array)
